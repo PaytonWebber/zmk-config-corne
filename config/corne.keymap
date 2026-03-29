@@ -9,6 +9,17 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
+        behaviors {
+                sc2_lt: sc2_layer_tap {
+                        compatible = "zmk,behavior-hold-tap";
+                        #binding-cells = <2>;
+                        tapping-term-ms = <200>;
+                        quick-tap-ms = <125>;
+                        flavor = "balanced";
+                        bindings = <&mo>, <&kp>;
+                };
+        };
+
         keymap {
                 compatible = "zmk,keymap";
 
@@ -56,15 +67,29 @@
 
                 game_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  T  |  Q  |  W  |  E  |  R  |   |     |     |     |     |     | TOGL |
-// | ESC  |  G  |  A  |  S  |  D  |  F  |   |     |     |     |     |     |      |
-// | SHFT |  B  |  Z  |  X  |  C  |  V  |   |     |     |     |     |     |      |
-//                    | GUI | CTRL| SPC |   | ENT |     |     |
+// | ESC  |  Q  |  W  |  E  |  R  |  T  |   |     |     |     |     |     | TOGL |
+// | TAB  |  A  |  S  |  D  |  F  |  G  |   |     |     |     |     |     |      |
+// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |     |     |     |     |     |      |
+//                  | SPC/L4 | CTRL| ALT |   | ENT |     |     |
                         bindings = <
-   &kp  TAB  &kp T &kp Q &kp W &kp E &kp R   &trans &trans &trans &trans &trans &tog 3
-   &kp ESC   &kp G &kp A &kp S &kp D &kp F   &trans &trans &trans &trans &trans &trans
-   &kp LSHFT &kp B &kp Z &kp X &kp C &kp V   &trans &trans &trans &trans &trans &trans
-              &kp LGUI &kp LCTRL &kp SPACE   &kp RET &trans &trans
+   &kp ESC   &kp Q &kp W &kp E &kp R &kp T   &none &none &none &none &none &tog 3
+   &kp TAB   &kp A &kp S &kp D &kp F &kp G   &none &none &none &none &none &none
+   &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &none &none &none &none &none &none
+              &sc2_lt 4 SPACE &kp LCTRL &kp LALT   &kp RET &none &none
+                        >;
+                };
+
+                sc2_num_layer {
+// -----------------------------------------------------------------------------------------
+// |  F1  |  1  |  2  |  3  |  4  |  5  |   |     |     |     |     |     | TOGL |
+// |  F2  |  6  |  7  |  8  |  9  |  0  |   |     |     |     |     |     |      |
+// |      | BKSP|  F5 |  F6 |  F7 |  F8 |   |     |     |     |     |     |      |
+//                    |     |     |     |   |     |     |     |
+                        bindings = <
+   &kp F1 &kp N1   &kp N2 &kp N3 &kp N4 &kp N5   &none &none &none &none &none &tog 3
+   &kp F2 &kp N6   &kp N7 &kp N8 &kp N9 &kp N0   &none &none &none &none &none &none
+   &trans &kp BSPC &kp F5 &kp F6 &kp F7 &kp F8   &none &none &none &none &none &none
+                    &trans &trans &trans             &none &none &none
                         >;
                 };
         };
