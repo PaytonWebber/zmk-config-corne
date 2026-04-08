@@ -9,17 +9,6 @@
 #include <dt-bindings/zmk/bt.h>
 
 / {
-        behaviors {
-                sc2_lt: sc2_layer_tap {
-                        compatible = "zmk,behavior-hold-tap";
-                        #binding-cells = <2>;
-                        tapping-term-ms = <200>;
-                        quick-tap-ms = <125>;
-                        flavor = "balanced";
-                        bindings = <&mo>, <&kp>;
-                };
-        };
-
         keymap {
                 compatible = "zmk,keymap";
 
@@ -70,12 +59,12 @@
 // | ESC  |  Q  |  W  |  E  |  R  |  T  |   |     |     |     |     |     | TOGL |
 // | CTRL |  A  |  S  |  D  |  F  |  G  |   |     |     |     |     |     |      |
 // | SHFT |  Z  |  X  |  C  |  V  |  B  |   |     |     |     |     |     |      |
-//                  | SPC/L4 | TAB | ALT |   | ENT |     |     |
+//                    | L4  | TAB | ALT |   | ENT |     |     |
                         bindings = <
    &kp ESC   &kp Q &kp W &kp E &kp R &kp T   &trans &trans &trans &trans &trans &tog 3
    &kp LCTRL &kp A &kp S &kp D &kp F &kp G   &trans &trans &trans &trans &trans &trans
    &kp LSHFT &kp Z &kp X &kp C &kp V &kp B   &trans &trans &trans &trans &trans &trans
-              &sc2_lt 4 SPACE &kp TAB &kp LALT   &kp RET &none &none
+              &mo 4 &kp TAB &kp LALT   &kp RET &none &none
                         >;
                 };
 
